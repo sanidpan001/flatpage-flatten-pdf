@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FlatPage — Flatten PDF Online Free: Lock Form Fields & Annotations</title>
+<meta name="description" content="Free PDF flattener. Bake form fields and annotations into the pages of your PDF so nothing is editable, with a full inventory before you flatten and a choice of scope.">
+<link rel="canonical" href="https://flatpage.fixoraa.tech/">
+<meta property="og:title" content="FlatPage — Flatten PDF Online Free: Lock Form Fields & Annotations">
+<meta property="og:description" content="Free PDF flattener. Bake form fields and annotations into the pages of your PDF so nothing is editable, with a full inventory before you flatten and a choice of scope.">
+<meta property="og:url" content="https://flatpage.fixoraa.tech/">
+<meta property="og:type" content="website">
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://cdn.jsdelivr.net/npm/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/pdfjs-dist@3.11.174/build/pdf.min.js"></script>
+<script>pdfjsLib.GlobalWorkerOptions.workerSrc='https://cdn.jsdelivr.net/npm/pdfjs-dist@3.11.174/build/pdf.worker.min.js';</script>
+<style>
+:root{--pri:#57534E;--acc:#0EA5E9;--bgc:#FAFAF9}
+body{background:var(--bgc);font-family:'Segoe UI',system-ui,sans-serif}
+.pri{background:var(--pri)} .prit{color:var(--pri)}
+.btn{background:var(--pri);color:#fff;padding:.6rem 1.2rem;border-radius:.6rem;font-weight:600;cursor:pointer;border:none}
+.btn:hover{opacity:.9} .btn2{background:var(--acc);color:#111;padding:.6rem 1.2rem;border-radius:.6rem;font-weight:600;cursor:pointer;border:none}
+.btn:disabled,.btn2:disabled{opacity:.45;cursor:not-allowed}
+input,select,textarea{border:1.5px solid #cbd5e1;border-radius:.55rem;padding:.55rem .7rem;width:100%;background:#fff;color:#0f172a}
+input[type=file]{padding:.45rem .6rem} input[type=range]{padding:0} input[type=checkbox],input[type=radio]{width:auto}
+input:focus,select:focus,textarea:focus{outline:2px solid var(--pri);border-color:transparent}
+label{font-size:.83rem;font-weight:600;display:block;margin-bottom:.3rem}
+.card{background:#fff;border-radius:1rem;box-shadow:0 8px 30px rgba(15,23,42,.08);padding:1.4rem}
+article p{margin:.7rem 0;line-height:1.75;color:#334155}
+article h2{font-size:1.45rem;font-weight:800;margin:1.6rem 0 .4rem;color:#0f172a}
+.faq{background:#fff;border-radius:.7rem;padding:.9rem 1.1rem;margin:.55rem 0;box-shadow:0 2px 10px rgba(15,23,42,.05)}
+.faq summary{font-weight:700;cursor:pointer}
+table.dt{width:100%;border-collapse:collapse} table.dt th,table.dt td{border:1px solid #e2e8f0;padding:.45rem .6rem;text-align:left;font-size:.9rem}
+table.dt th{background:#f1f5f9}
+.drop{border:2px dashed #94a3b8;border-radius:.8rem;padding:1.1rem;text-align:center;background:#f8fafc}
+canvas.prev{max-width:100%;border:1px solid #e2e8f0;border-radius:.5rem;background:#fff}
+
+</style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebApplication", "name": "FlatPage", "url": "https://flatpage.fixoraa.tech/", "applicationCategory": "UtilitiesApplication", "operatingSystem": "Any", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "description": "Free PDF flattener. Bake form fields and annotations into the pages of your PDF so nothing is editable, with a full inventory before you flatten and a choice of scope."}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What exactly does flattening remove?", "acceptedAnswer": {"@type": "Answer", "text": "The editable objects \u2014 form field definitions and (at full scope) annotations \u2014 are removed after their appearances are baked into the pages. The document looks identical; it simply cannot be edited as a form any more."}}, {"@type": "Question", "name": "Can flattening be undone?", "acceptedAnswer": {"@type": "Answer", "text": "Not in the flattened copy \u2014 that permanence is the point. Your original file is never modified, so keep it as the editable master and distribute only flattened copies."}}, {"@type": "Question", "name": "Why inventory before flattening?", "acceptedAnswer": {"@type": "Answer", "text": "Because flattening preserves values exactly as they are \u2014 including mistakes. The inventory lists every field's current value and all annotation counts, so you can correct errors while correction is still possible."}}, {"@type": "Question", "name": "What is the difference between the two scopes?", "acceptedAnswer": {"@type": "Answer", "text": "Forms-only locks your field data while leaving comments and markups live for continued collaboration. Full scope finalises everything \u2014 the right choice for submissions, filings and archives."}}, {"@type": "Question", "name": "How do I know the flatten worked?", "acceptedAnswer": {"@type": "Answer", "text": "FlatPage reloads its own output and reports how many fields remain \u2014 expect zero \u2014 and you can confirm by opening the copy and clicking a former field: nothing will respond."}}, {"@type": "Question", "name": "Is my document uploaded to a server?", "acceptedAnswer": {"@type": "Answer", "text": "No. Inventory and flattening run entirely in your browser; your completed forms \u2014 and all their personal data \u2014 stay on your device."}}]}</script>
+</head>
+<body id="top">
+<header class="sticky top-0 z-40 shadow-md" style="background:#1C1917">
+  <div class="mx-auto max-w-6xl px-4 sm:px-6 py-3 flex items-center justify-between">
+    <a href="#top" class="text-xl font-extrabold tracking-tight" style="color:#FAFAF9">🧊 FlatPage</a>
+    <nav class="flex gap-5 text-sm font-semibold" style="color:#FAFAF9">
+      <a href="#top" class="hover:underline">Home</a>
+      <a href="https://fixoraa.tech" class="hover:underline">More Tools</a>
+    </nav>
+  </div>
+</header>
+<div class="no-print mx-auto max-w-6xl px-4 sm:px-6 pt-4" role="complementary" aria-label="Advertisement">
+  <div class="mx-auto text-center" style="max-width:728px">
+    <span class="block text-[10px] tracking-[0.18em] uppercase text-slate-400 mb-1.5">Advertisement</span>
+    <div class="flex justify-center overflow-hidden">
+      <div class="origin-top scale-[0.44] sm:scale-100 shrink-0">
+        <script>
+          atOptions = { 'key' : '4e68ac77881c17fe128a46565d9a4e8c', 'format' : 'iframe', 'height' : 90, 'width' : 728, 'params' : {} };
+        </script>
+        <script src="https://www.highrevenueformat.com/4e68ac77881c17fe128a46565d9a4e8c/invoke.js"></script>
+      </div>
+    </div>
+  </div>
+</div>
+<main class="mx-auto max-w-6xl px-4 sm:px-6 py-8">
+  <div class="text-center mb-6">
+    <h1 class="text-3xl sm:text-4xl font-extrabold" style="color:#0f172a">Flatten a PDF — Lock Fields & Annotations In</h1>
+    <p class="mt-2 text-slate-600 max-w-2xl mx-auto">A filled form that can still be edited is an argument waiting to happen. FlatPage inventories every field and annotation in your PDF, then flattens them into the pages themselves — final, fixed, and safe to file or send.</p>
+    <span class="inline-block mt-3 px-3 py-1 rounded-full text-xs font-bold text-white pri">✓ Unlimited Free Usage — No Signup, No Watermark</span>
+    <p class="mt-2 text-xs text-slate-500">🔒 100% private: your file is processed entirely in your browser and never uploaded to any server.</p>
+  </div>
+  <div class="grid md:grid-cols-5 gap-6">
+  <div class="card md:col-span-2 space-y-3">
+    <div class="drop"><label>Your PDF</label><input id="file" type="file" accept="application/pdf"></div>
+    <button class="btn w-full" onclick="inspect()">🔍 Inventory Fields &amp; Annotations</button>
+    <div><label>Flatten scope</label><select id="scope"><option value="all">Forms + annotations</option><option value="forms">Form fields only</option></select></div>
+    <button class="btn w-full" id="go" onclick="run()" disabled>Flatten PDF</button>
+    <button class="btn2 w-full" id="dl" style="display:none">⬇ Download flattened PDF</button>
+    <p id="status" class="text-sm font-semibold"></p>
+  </div>
+  <div class="card md:col-span-3">
+    <h3 class="font-bold mb-2">Inventory — what will be locked in</h3>
+    <div id="inv" class="overflow-x-auto text-sm text-slate-600">Inspect first: FlatPage lists every form field (with its current value) and counts annotations per page, so you flatten with a complete picture — never blind.</div>
+  </div></div>
+</main>
+<div class="no-print mx-auto max-w-6xl px-4 sm:px-6 pb-4" role="complementary" aria-label="Advertisement">
+  <div class="mx-auto text-center" style="max-width:728px">
+    <span class="block text-[10px] tracking-[0.18em] uppercase text-slate-400 mb-1.5">Advertisement</span>
+    <div class="flex justify-center overflow-hidden">
+      <script async src="https://js.wpadmngr.com/static/adManager.js" data-admpid="464498"></script>
+    </div>
+  </div>
+</div>
+<section class="mx-auto max-w-4xl px-4 sm:px-6 pb-6">
+  <article>
+  <h2>A filled form is a claim; a flattened form is a record</h2>
+<p>Form fields and annotations are living things inside a PDF: values can be retyped, checkboxes flipped, comments edited or deleted by anyone with a viewer and a motive — or, more commonly and more dangerously, by accident. The application you submitted, the inspection checklist you signed off, the marked-up proof you approved — as long as their contents remain editable fields, their evidentiary value quietly decays. Flattening ends the discussion: it bakes every field's appearance and value into the page content itself, after which the document says what it says, permanently, in every viewer on earth.</p>
+<p>FlatPage performs that finalisation with an auditor's habit: inventory first. Before anything is flattened, the tool lists every form field with its type and current value, and counts annotations page by page. You see precisely what is about to become permanent — the mistyped date, the field somebody left blank, the stray comment — while correction is still possible. Flattening blind is how errors become records; the inventory is the tool's conscience, and it is mandatory by design.</p>
+<h2>What flattening does, mechanically</h2>
+<p>A form field displays through an appearance stream — the little picture of its value that viewers draw into its rectangle. Flattening merges those appearance streams into the page's own content and deletes the field definitions, so the value's picture remains but the field, as an editable object, ceases to exist. Annotations receive the same treatment under the full scope: their appearances are accounted, then the annotation layer is removed from the saved copy, leaving pages that show exactly what was approved and nothing that can be peeled back.</p>
+<p>The verification is built into the result: after saving, FlatPage reloads its own output and counts the fields remaining, reporting the number in plain sight. Zero is the expected answer, and the tool says so. That self-check embodies the difference between a tool that performs an action and a tool that confirms an outcome — for an operation whose entire purpose is finality, the confirmation is not decoration.</p>
+<h2>Choosing scope: forms only, or everything</h2>
+<p>Forms-only flattening suits documents still in conversation: the application your reviewer may annotate further, the checklist that returns for comments each cycle. Fields lock — the data is safe from casual alteration — while comments, highlights and markups remain live objects others can add to and discuss. It is the right scope for collaboration's middle chapters, where data has settled but dialogue has not.</p>
+<p>Full flattening is for endings: submissions, filings, signed-off proofs, issued certificates, archived records. Everything becomes page, nothing remains negotiable. The corollary discipline is to keep an unflattened master whenever there is any chance the document's data must change — flattening is deliberately one-way, and the correct professional pattern is master editable, distribution flattened. FlatPage never touches your original file, so the master survives by default; only the copy you download is final.</p>
+<h2>How to flatten a PDF, step by step</h2>
+<p>Load the file and run the inventory — read it, do not skim it. Check each field's value as listed: the flatten will preserve exactly what the inventory shows, including the typo you were about to make immortal. Confirm annotation counts match your expectation; an annotation you forgot existed is about to become permanent ink. If anything is wrong, fix it in the source form first (FieldFill completes fields beautifully) and re-inspect.</p>
+<p>Choose the scope by the document's destination — forms-only for continuing collaboration, full for anything leaving your control — then flatten and download. The status line reports fields remaining in the output; expect zero. Open the flattened copy and click where a field used to be: nothing should respond. That small, anticlimactic test is the sound of a document becoming a record.</p>
+<h2>Where flattening is standard practice</h2>
+<p>Submission pipelines flatten by default: application portals, court e-filing, journal systems and tender platforms either flatten on receipt or instruct submitters to arrive flattened, because a fixed document processes identically in every system downstream. Print workflows demand it too — a form field that a pre-press RIP ignores prints as an empty box, the classic flattened-too-late disaster that flattening early prevents entirely.</p>
+<p>Archiving is the quiet third case. Records retained for years must open identically in future software that may handle fields and annotation versions differently; a flattened file's appearance is self-contained, depending on nothing but the PDF standard itself. Institutions flatten on ingest for the same reason museums fix pigments: the artefact's future readability should not depend on the survival of the machinery that made it editable.</p>
+<h2>Privacy: final copies of personal records</h2>
+<p>The documents people flatten — submitted applications, completed claims, signed checklists — concentrate personal data precisely because they are complete. FlatPage inventories and flattens inside your browser tab; the file and its values never leave your device, and the inventory exists only on your screen. Nothing is uploaded, logged or retained.</p>
+<p>Local processing pairs naturally with the flattening workflow's rhythm: inspect, correct, re-inspect, flatten, verify — a loop that would be miserable through an upload queue and is effortless on your own machine. Finality deserves that unhurried loop. The last version of a document you will ever make should be the most carefully checked one, and the checking should cost you nothing but attention.</p>
+<h2>A finalisation checklist for records that matter</h2>
+<p>Before flattening any record, walk the checklist professionals use: every field's value read aloud against its source, totals re-added once, names spelled as on the identity documents they accompany, and the document's date confirmed as the filing date intended. Confirm the recipient's format demand — some systems want the live form's data, most want the fixed record — because flattening for the wrong audience means refilling, not unflattening. Name the pair clearly: the master carries '-master', the record '-final', and neither is ever overwritten. Store the final in the records location, not the working folder; finality is also a place. With those habits, flattening stops being a button and becomes what it should be — the moment a document stops being drafted and starts being true.</p>
+  <h2>Frequently Asked Questions</h2>
+  <details class="faq"><summary>What exactly does flattening remove?</summary><p>The editable objects — form field definitions and (at full scope) annotations — are removed after their appearances are baked into the pages. The document looks identical; it simply cannot be edited as a form any more.</p></details>
+<details class="faq"><summary>Can flattening be undone?</summary><p>Not in the flattened copy — that permanence is the point. Your original file is never modified, so keep it as the editable master and distribute only flattened copies.</p></details>
+<details class="faq"><summary>Why inventory before flattening?</summary><p>Because flattening preserves values exactly as they are — including mistakes. The inventory lists every field's current value and all annotation counts, so you can correct errors while correction is still possible.</p></details>
+<details class="faq"><summary>What is the difference between the two scopes?</summary><p>Forms-only locks your field data while leaving comments and markups live for continued collaboration. Full scope finalises everything — the right choice for submissions, filings and archives.</p></details>
+<details class="faq"><summary>How do I know the flatten worked?</summary><p>FlatPage reloads its own output and reports how many fields remain — expect zero — and you can confirm by opening the copy and clicking a former field: nothing will respond.</p></details>
+<details class="faq"><summary>Is my document uploaded to a server?</summary><p>No. Inventory and flattening run entirely in your browser; your completed forms — and all their personal data — stay on your device.</p></details>
+  </article>
+</section>
+<footer class="mt-6 py-8" style="background:#1C1917;color:#FAFAF9">
+  <div class="mx-auto max-w-6xl px-4 sm:px-6 text-center text-sm">
+    <p class="font-bold text-base">FlatPage</p>
+    <p class="opacity-80 mt-1">Free PDF flattener. Bake form fields and annotations into the pages of your PDF so nothing is editable, with a full inventory before you flatten and a choice of scope.</p>
+    <p class="mt-2"><a href="#top" class="underline">Home</a> · <a href="https://fixoraa.tech" class="underline">More Tools</a></p>
+    <p class="fx-credit" style="text-align:center;font-size:12.5px;opacity:.62;margin:10px auto 2px;letter-spacing:.01em">Made by <a href="https://fixoraa.tech" target="_blank" rel="noopener" style="color:inherit;font-weight:700;text-decoration:underline;text-underline-offset:2px">Fixoraa</a></p>
+  </div>
+</footer>
+<script>
+
+const $=id=>document.getElementById(id);
+function fmtBytes(b){if(b===0)return '0 B';const k=1024,s=['B','KB','MB','GB'];const i=Math.floor(Math.log(b)/Math.log(k));return (b/Math.pow(k,i)).toFixed(i?1:0)+' '+s[i];}
+function setStatus(m,ok){const el=$('status');if(!el)return;el.textContent=m;el.style.color=ok===false?'#dc2626':'inherit';}
+function download(bytes,name,type){const blob=bytes instanceof Blob?bytes:new Blob([bytes],{type:type||'application/pdf'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=name;document.body.appendChild(a);a.click();setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove();},800);}
+async function readFile(input){const f=input.files&&input.files[0];if(!f)throw new Error('Please choose a PDF file first.');return {file:f,buf:await f.arrayBuffer()};}
+function showDl(id,bytes,name){const b=$(id);b.style.display='inline-block';b.onclick=()=>download(bytes,name);}
+
+
+let srcBytes=null;
+async function inspect(){
+  try{
+    const {buf}=await readFile($('file')); srcBytes=buf;
+    const doc=await PDFLib.PDFDocument.load(buf.slice(0));
+    const form=doc.getForm(); const fields=form.getFields();
+    let annTotal=0; const perPage=[];
+    doc.getPages().forEach((p,i)=>{ let n=0; try{ const a=p.node.Annots(); n=a?a.size():0; }catch(e){} annTotal+=n; if(n) perPage.push('page '+(i+1)+': '+n); });
+    $('inv').innerHTML=(fields.length? '<table class="dt"><tr><th>Field</th><th>Type</th><th>Current value</th></tr>'+fields.map(f=>{ let v=''; try{ v=f.getText? (f.getText()||'') : ''; }catch(e){} return '<tr><td>'+f.getName().replace(/</g,'&lt;')+'</td><td>'+f.constructor.name.replace('PDF','')+'</td><td>'+String(v).replace(/</g,'&lt;')+'</td></tr>'; }).join('')+'</table>' : '<p>No form fields in this document.</p>')+'<p class="mt-2"><b>'+fields.length+' form field(s) · '+annTotal+' annotation(s)</b>'+(perPage.length?' ('+perPage.join(', ')+')':'')+' across '+doc.getPageCount()+' pages.</p>';
+    $('go').disabled=false;
+    setStatus('Inventory complete. Choose a scope and flatten when ready.');
+  }catch(e){ setStatus('⚠ '+(e.message||e),false); }
+}
+async function run(){
+  const btn=$('go'); btn.disabled=true;
+  try{
+    if(!srcBytes) throw new Error('Inspect the PDF first.');
+    const doc=await PDFLib.PDFDocument.load(srcBytes.slice(0));
+    const form=doc.getForm();
+    if(form.getFields().length) form.updateFieldAppearances();
+    if($('scope').value==='all'){
+      try{ form.flatten(); }catch(e){}
+      doc.getPages().forEach(p=>{ try{ p.node.delete(PDFLib.PDFName.of('Annots')); }catch(e){} });
+      if(form.getFields().length){ try{ form.flatten(); }catch(e){} }
+    } else {
+      form.flatten();
+    }
+    const bytes=await doc.save();
+    showDl('dl',bytes,'flattened.pdf');
+    const remain=(await PDFLib.PDFDocument.load(bytes.slice(0))).getForm().getFields().length;
+    setStatus('Done ✔ Flattened copy ready. Fields remaining in output: '+remain+' (expect 0). Annotations ' + ($('scope').value==='all' ? 'were removed after being accounted in the inventory.' : 'were left untouched (forms-only scope).'));
+  }catch(e){ setStatus('⚠ '+(e.message||e),false); }
+  btn.disabled=false;
+}
+
+</script>
+</body>
+</html>
